@@ -1,0 +1,11 @@
+{
+  "name": "typescript",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@interactjs/types": "^1.10.17",
+    "@statirjs/core": "^1.2.0",
+    "interactjs": "^1.10.17",
+    "nanoid": "^4.0.0"
+  }
+}
