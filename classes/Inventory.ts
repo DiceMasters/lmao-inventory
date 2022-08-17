@@ -2,6 +2,7 @@
 
 import { store } from './../store';
 import interact from 'interactjs';
+import Modal from './Modal';
 
 export default class Inventory {
   cellQuantity: number;
@@ -136,10 +137,50 @@ export default class Inventory {
             event.target.classList.remove('hide');
             this.interactUtils.x = 0;
             this.interactUtils.y = 0;
+
+            if (event.relatedTarget === null) {
+              const parentIndex = (event.target as HTMLElement).parentElement
+                .dataset.index;
+              const modal = new Modal('Delete Item?', [
+                {
+                  key: 'delete',
+                  text: 'Yes',
+                  callback: () => {
+                    this._modalDeleteCallback(modal, Number(parentIndex));
+                  },
+                },
+                {
+                  key: 'cancel',
+                  text: 'No',
+                  callback: () => {
+                    this._modalCancelCallback(modal);
+                  },
+                },
+              ]);
+
+              modal.state = true;
+            }
           },
         },
       });
     }
+  }
+
+  _modalDeleteCallback(modal: Modal, parentIndex: number) {
+    this.remove(parentIndex);
+    this._terminateModal(modal);
+    this._redraw();
+  }
+
+  _modalCancelCallback(modal: Modal) {
+    this._terminateModal(modal);
+    this._redraw();
+  }
+
+  _terminateModal(modal: Modal) {
+    modal.state = false;
+    modal._terminate();
+    modal = null;
   }
 
   add(itemId: string) {
@@ -175,16 +216,21 @@ export default class Inventory {
     this._redraw();
   }
 
-  replace(draggableIndex: number, cellIndex: number) {
-    [this.cells[draggableIndex], this.cells[cellIndex]] = [
-      this.cells[cellIndex],
-      this.cells[draggableIndex],
-    ];
+  remove(index: number) {
+    const { cells } = this;
+
+    this.cells = cells.map((cell) => {
+      if (cell.index === index) {
+        cell.item = null;
+        cell.quantity = 0;
+        cell.stack = 1;
+      }
+
+      return cell;
+    });
 
     this._redraw();
   }
-
-  move(activeElement: HTMLElement, currentElement: HTMLElement) {}
 }
 
 export class InventoryCell {

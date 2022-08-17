@@ -1,5 +1,5 @@
 // Import stylesheets
-import './style.css';
+import './styles/style.scss';
 
 // Import instances
 import Inventory from './classes/Inventory';

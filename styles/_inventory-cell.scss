@@ -1,0 +1,40 @@
+.inventory-cell {
+  width: 30px;
+  height: 30px;
+
+  background-color: aliceblue;
+
+  border: 2px solid #633232;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  & > .item {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    position: relative;
+
+    touch-action: none;
+    user-select: none;
+
+    &.hide {
+      opacity: 0.7;
+      z-index: 5;
+    }
+
+    &.hovered {
+      border-color: red;
+    }
+  }
+
+  &__quantity {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+
+    font-size: 12px;
+    color: black;
+  }
+}

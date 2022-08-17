@@ -1,0 +1,15 @@
+.inventory {
+  display: grid;
+  grid-template-columns: repeat(3, 30px);
+  grid-template-rows: auto;
+  gap: 2px;
+
+  &__wrapper {
+    width: auto;
+
+    background-color: rgb(110, 110, 110);
+
+    padding: 10px;
+    border-radius: 4px;
+  }
+}

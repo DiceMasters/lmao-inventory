@@ -1,0 +1,27 @@
+.item {
+  width: 30px;
+  height: 30px;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 2px solid #633232;
+  border-radius: 4px;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  &--swords {
+    background-image: url('https://rp-wow.ru/upload/084/u8408/fa/9b/admiralteistvo-uroki-blizhnego-boja-photo-small.png');
+  }
+
+  &--crown {
+    background-image: url('https://www.nationhive.com/sites/www.nationhive.com/files/games/genshin-impact/objet-sagesse-du-pyrobate.png');
+  }
+
+  &--elixir {
+    background-image: url('https://genshindb.org/wp-content/uploads/2021/02/Material-Energy-Nectar.png');
+  }
+}
